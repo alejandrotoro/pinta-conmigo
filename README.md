@@ -6,7 +6,7 @@ Página web para niños: eligen un dibujo por categoría, lo pintan en línea y 
 
 ## Funciones
 
-- **Categorías**: Animales, Dinosaurios, Vehículos, Espacio, Mar y Castillos.
+- **Categorías**: Animales, Dinosaurios, Vehículos, Espacio, Mar y Castillos, con 10 dibujos cada una en tres niveles (Fácil, Medio y Difícil).
 - **Pintar en línea**: paleta de 12 colores, 3 tamaños de pincel y borrador. Funciona con mouse, dedo o lápiz. Las líneas del dibujo siempre quedan encima de los colores.
 - **Deshacer**: botón o `Ctrl/Cmd + Z` (hasta 30 pasos).
 - **Guardar**: descarga el dibujo pintado como PNG.
