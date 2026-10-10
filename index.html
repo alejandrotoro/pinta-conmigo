@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinta Conmigo</title>
+  <meta name="description" content="Dibujos para pintar en línea o imprimir y colorear a mano.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Vista 1: categorías -->
+  <div id="view-home" class="view">
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="#/">
+          <svg width="48" height="48" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFC93C" stroke="#1F2140" stroke-width="3"/><path d="M14 32 L30 16 L35 21 L19 37 L12 38 Z" fill="#FF7A2F" stroke="#1F2140" stroke-width="3" stroke-linejoin="round"/></svg>
+          <span>Pinta Conmigo</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="wrap hero">
+      <div>
+        <h1>¿Qué quieres pintar hoy?</h1>
+        <p>Elige un dibujo, píntalo aquí mismo o imprímelo para colorear a mano.</p>
+      </div>
+      <div class="hero-dots" aria-hidden="true">
+        <span style="background:#FF4D5E"></span><span style="background:#FFC93C"></span><span style="background:#3CC48A"></span><span style="background:#3B8BFF"></span>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div id="category-chips" class="chips" role="group" aria-label="Categorías"></div>
+    </section>
+
+    <section class="wrap">
+      <div id="drawing-grid" class="grid"></div>
+    </section>
+  </div>
+
+  <!-- Vista 2: pintar -->
+  <div id="view-paint" class="view" hidden>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <div class="title-group">
+          <a class="btn btn-pill" href="#/">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Categorías
+          </a>
+          <h1 id="paint-title" class="paint-title">Dibujo</h1>
+        </div>
+        <div class="actions">
+          <button type="button" id="btn-undo" class="btn btn-action">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 L4 12 L9 17 M4 12 L14 12 Q20 12 20 17 L20 19" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Deshacer
+          </button>
+          <button type="button" id="btn-save" class="btn btn-action btn-green">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 L12 15 M7 10 L12 15 L17 10 M5 19 L19 19" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Guardar
+          </button>
+          <button type="button" id="btn-print" class="btn btn-action btn-yellow">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9 L7 4 L17 4 L17 9 M7 17 L4 17 L4 9 L20 9 L20 17 L17 17 M7 14 L17 14 L17 20 L7 20 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>
+            Imprimir siluetas
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap paint-layout">
+      <aside class="panel" aria-label="Herramientas">
+        <div class="current">
+          <span id="current-swatch" class="current-swatch"></span>
+          <div>
+            <div class="muted-label">Color actual</div>
+            <div id="current-name" class="current-name">—</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel-label">Colores</div>
+          <div id="palette" class="palette" role="group" aria-label="Paleta de colores"></div>
+        </div>
+
+        <div>
+          <div class="panel-label">Tamaño del pincel</div>
+          <div id="sizes" class="sizes" role="group" aria-label="Tamaño del pincel"></div>
+        </div>
+
+        <div class="tools" role="group" aria-label="Herramienta">
+          <button type="button" id="tool-brush" class="btn tool" aria-pressed="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20 L10 20 L20 10 L14 4 L4 14 Z M9 9 L15 15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>
+            Pincel
+          </button>
+          <button type="button" id="tool-eraser" class="btn tool" aria-pressed="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 20 L20 8 L14 2 L2 14 L8 20 Z M8 20 L20 20 M5 11 L11 17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>
+            Borrador
+          </button>
+        </div>
+      </aside>
+
+      <section class="canvas-col" aria-label="Lienzo">
+        <div class="canvas-card">
+          <div id="stage" class="stage">
+            <canvas id="paint-canvas" width="1200" height="1000" aria-label="Lienzo para pintar"></canvas>
+            <img id="outline-img" class="outline" alt="">
+          </div>
+        </div>
+        <p class="hint">Pinta con el dedo o el mouse. Las líneas negras siempre quedan encima de tus colores.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- Hoja de impresión: solo visible al imprimir -->
+  <div id="print-sheet" class="print-sheet" aria-hidden="true">
+    <div class="print-head">
+      <div id="print-title" class="print-title"></div>
+      <div class="print-name">Nombre: <span></span></div>
+    </div>
+    <div id="print-drawing" class="print-drawing"></div>
+  </div>
+
+  <script src="js/drawings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
